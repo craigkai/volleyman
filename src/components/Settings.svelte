@@ -4,7 +4,6 @@
 	import { goto } from '$app/navigation';
 	import { error, success } from '$lib/toast';
 	import type { HttpError } from '@sveltejs/kit';
-	import { Select } from 'flowbite-svelte';
 	import { Event } from '$lib/event';
 
 	export let tournament: Event;
@@ -107,10 +106,18 @@
 
 	<div class="m-2">
 		{#if event_id === 'create'}
-			<button class="button" type="button" on:click={() => createNewEvent()}>
+			<button
+				class="button variant-filled-primary p-2 rounded"
+				type="button"
+				on:click={() => createNewEvent()}
+			>
 				Create Tournament</button
 			>{:else}
-			<button class="button" type="button" on:click={() => updateTournament()}>
+			<button
+				class="button variant-filled-primary rounded py-2 px-4"
+				type="button"
+				on:click={() => updateTournament()}
+			>
 				Update Tournament Settings</button
 			>
 		{/if}
@@ -118,7 +125,7 @@
 
 	{#if event_id !== 'create'}
 		<button
-			class="bg-nord-12 m-2 hover:bg-nord-9 dark:text-nord-1 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+			class="button variant-filled-warning rounded py-2 px-4"
 			type="button"
 			on:click={deleteEvent}>Delete event</button
 		>
