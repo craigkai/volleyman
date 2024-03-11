@@ -19,7 +19,8 @@ const config = {
 		alias: {
 			$lib: path.resolve('src/lib'),
 			$components: path.resolve('src/components'),
-			$supabaseTypes: path.resolve('src/types/supabase')
+			$supabaseTypes: path.resolve('src/types/supabase'),
+			$schemas: path.resolve('src/schemas')
 		}
 	}
 };

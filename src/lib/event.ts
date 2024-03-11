@@ -1,5 +1,7 @@
 import type { EventSupabaseDatabaseService } from '$lib/database/event';
+import type { Infer } from 'sveltekit-superforms';
 import { Base } from './base';
+import type { FormSchema } from '$schemas/settingsSchema';
 
 /**
  * The Tournament class represents a tournament in the application.
@@ -40,20 +42,11 @@ export class Event extends Base {
 	 * @returns {Promise<Tournament>} - Returns a promise that resolves to the newly created tournament.
 	 * @throws {Error} - Throws an error if the event data does not have all required values.
 	 */
-	async create(input: Event): Promise<Event> {
-		if (
-			!input.name ||
-			!input.date ||
-			!input.pools ||
-			!input.courts ||
-			!input.scoring ||
-			!input.refs
-		) {
-			this.handleError(400, 'Tournament create call does not have all required values');
-		}
+	async create(input: Infer<FormSchema>): Promise<Event> {
 		if (input.hasOwnProperty('id')) {
 			delete (input as { id?: number }).id;
 		}
+
 		const currentUser = await this.databaseService.getCurrentUser();
 		const ownerId = currentUser ? currentUser.id : null;
 		input.owner = ownerId as string;
@@ -76,7 +69,7 @@ export class Event extends Base {
 	 * @returns {Promise<Tournament>} - Returns a promise that resolves to the updated tournament.
 	 * @throws {Error} - Throws an error if there's an issue updating the tournament.
 	 */
-	async update(id: number, input: Event): Promise<Event> {
+	async update(id: number, input: Infer<FormSchema>): Promise<Event> {
 		const res: EventRow | null = await this.databaseService.updateEvent(id, input);
 
 		if (res !== null) {

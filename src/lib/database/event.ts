@@ -1,7 +1,9 @@
 import { SupabaseDatabaseService } from '$lib/database/supabaseDatabaseService';
 import type { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js';
 import { z } from 'zod';
-import { eventsRowSchema, eventsUpdateSchema } from '../../types/schemas';
+import { eventsRowSchema, eventsUpdateSchema } from '$schemas/supabase';
+import type { Infer } from 'sveltekit-superforms';
+import type { FormSchema } from '$schemas/settingsSchema';
 
 const EventsRowSchemaArray = z.array(eventsRowSchema);
 
@@ -12,7 +14,7 @@ export class EventSupabaseDatabaseService extends SupabaseDatabaseService {
 	 * @returns {Promise<EventRow>} - Returns a promise that resolves to the newly created event.
 	 * @throws {Error} - Throws an error if there's an issue creating the event.
 	 */
-	async createEvent(input: Event): Promise<EventRow | null> {
+	async createEvent(input: Infer<FormSchema>): Promise<EventRow | null> {
 		try {
 			const parsedEvent = eventsRowSchema.partial().parse(input);
 
@@ -62,12 +64,11 @@ export class EventSupabaseDatabaseService extends SupabaseDatabaseService {
 
 	/**
 	 * Update the details of a tournament in the database.
-	 * @param {number} id - The ID of the tournament to update.
 	 * @param {EventRow} input - The new data for the tournament.
 	 * @returns {Promise<EventRow>} - Returns a promise that resolves to the updated tournament.
 	 * @throws {Error} - Throws an error if there's an issue updating the tournament.
 	 */
-	async updateEvent(id: number, input: EventRow): Promise<EventRow | null> {
+	async updateEvent(id: number, input: Infer<FormSchema>): Promise<EventRow | null> {
 		try {
 			const parsedEvent = eventsUpdateSchema.parse(input);
 

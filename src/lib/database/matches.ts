@@ -1,7 +1,7 @@
 import { SupabaseDatabaseService } from '$lib/database/supabaseDatabaseService';
 import type { PostgrestResponse } from '@supabase/supabase-js';
 import { z } from 'zod';
-import { matchesRowSchema, matchesUpdateSchema, matchesInsertSchema } from '../../types/schemas';
+import { matchesRowSchema, matchesUpdateSchema, matchesInsertSchema } from '$schemas/supabase';
 
 const MatchesRowSchemaArray = z.array(matchesRowSchema);
 

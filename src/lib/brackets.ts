@@ -106,7 +106,7 @@ export class Brackets extends Matches {
 				const winnerOfOtherParent =
 					otherParent?.state === 'COMPLETE'
 						? // @ts-ignore: Object is possibly 'null'.
-						otherParent.team1_score > otherParent.team2_score
+							otherParent.team1_score > otherParent.team2_score
 							? otherParent.team1
 							: otherParent.team2
 						: child.team1 || child.team2;

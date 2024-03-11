@@ -5,6 +5,7 @@
 	import Header from '$components/Header.svelte';
 	import Footer from '$components/Footer.svelte';
 	import { invalidate } from '$app/navigation';
+	import { ModeWatcher } from 'mode-watcher';
 	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
 	import { SvelteToast } from '@zerodevx/svelte-toast';
@@ -46,6 +47,7 @@
 </svelte:head>
 
 <html lang="en">
+	<ModeWatcher />
 	<div class="dark:text-nord-12">
 		<Header {data} {authChange} />
 

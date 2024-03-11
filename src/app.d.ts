@@ -8,7 +8,7 @@ import type {
 	teamsRowSchema,
 	bracketsRowSchema,
 	matchStateSchema
-} from './types/schemas';
+} from '$schemas/supabase';
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
